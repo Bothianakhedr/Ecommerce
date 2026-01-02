@@ -1,0 +1,6 @@
+export {Home} from "./Home/Home.tsx"
+export {Products} from "./Products/Products.tsx"
+export {Categories} from "./Categories/Categories.tsx"
+export {Brands} from "./Brands/Brands.tsx"
+export {Login} from "./Auth/pages/Login/Login.tsx"
+export {Register} from "./Auth/pages/Register/Register.tsx"
