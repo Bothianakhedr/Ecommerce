@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import type { ErrorResponseType, TInputRegisterForm } from "../types/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "../validation/authValidation";
+import type { AxiosError } from "axios";
 
 export const useRegister = () => {
   const navigate = useNavigate();
@@ -23,8 +24,10 @@ export const useRegister = () => {
       toast.success("register successfully");
       navigate("/login");
     },
-    onError: (error: ErrorResponseType) => {
-      toast.error(error?.response?.data?.message || "Something went wrong");
+    onError: (error: unknown) => {
+      const errorObj = error as AxiosError<ErrorResponseType>;
+
+      toast.error(errorObj?.response?.data?.message || "Something went wrong");
     },
   });
   const onSubmit: SubmitHandler<TInputRegisterForm> = (data) => {

@@ -25,11 +25,7 @@ export type TInputForgotPasswordForm = {
 };
 
 export type ErrorResponseType = {
-  error: {
-    response: {
-      data: {
+ 
         message: string;
       };
-    };
-  };
-};
+ 

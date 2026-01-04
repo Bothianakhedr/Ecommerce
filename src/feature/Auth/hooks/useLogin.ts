@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import type { ErrorResponseType, TInputLoginForm } from "../types/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../validation/authValidation";
+import type { AxiosError } from "axios";
 
 export const useLogin = () => {
   const navigate = useNavigate();
@@ -24,8 +25,10 @@ export const useLogin = () => {
       localStorage.setItem("token", JSON.stringify(responseData.token));
       navigate("/");
     },
-    onError: (error: ErrorResponseType) => {
-      toast.error(error?.response?.data?.message || "Something went wrong");
+    onError: (error: unknown) => {
+      const errorObj = error as AxiosError<ErrorResponseType>;
+
+      toast.error(errorObj?.response?.data?.message || "Something went wrong");
     },
   });
   const onSubmit: SubmitHandler<TInputLoginForm> = (data) => {
