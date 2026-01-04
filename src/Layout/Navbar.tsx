@@ -34,7 +34,7 @@ export const Navbar = () => {
           <NavLink to="/register">Register</NavLink>
         </li>
         <li>
-          <button >Login</button>
+          <button >Logout</button>
         </li>
       </ul>
       </div>

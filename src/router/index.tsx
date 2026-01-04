@@ -3,8 +3,10 @@ import { Layout } from "../Layout/Layout";
 import {
   Brands,
   Categories,
+  ForgotPassword,
   Home,
   Login,
+  PageNotFound,
   Products,
   Register,
 } from "../feature";
@@ -19,6 +21,8 @@ export const router = createBrowserRouter([
       { path: "brands", element: <Brands /> },
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
+      { path: "forgotPassword", element: <ForgotPassword /> },
     ],
   },
+  {path:"*", element:<PageNotFound/>}
 ]);
