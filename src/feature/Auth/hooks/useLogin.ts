@@ -17,11 +17,11 @@ export const useLogin = () => {
     resolver: zodResolver(loginSchema),
   });
 
-  const { mutate, isPending, data } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: (data: TInputLoginForm) => loginServices(data),
-    onSuccess: () => {
+    onSuccess: (responseData) => {
       toast.success("login successfully");
-      localStorage.setItem("token", JSON.stringify(data.token));
+      localStorage.setItem("token", JSON.stringify(responseData.token));
       navigate("/");
     },
     onError: (error: ErrorResponseType) => {
