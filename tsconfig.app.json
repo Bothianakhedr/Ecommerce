@@ -12,7 +12,8 @@
       "@shared/*": ["shared/*"],
       "@feature/*": ["feature/*"],
       "@hooks/*": ["hooks/*"],
-      "@data/*" :["data/*"]
+      "@data/*" :["data/*"],
+      "@context/*" :["context/*"]
     },
 
     /* Bundler mode */

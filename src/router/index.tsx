@@ -7,6 +7,7 @@ import {
   Home,
   Login,
   PageNotFound,
+  ProductDetails,
   Products,
   Register,
 } from "../feature";
@@ -17,6 +18,8 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: "products", element: <Products /> },
+            { path: `product/:id`, element: <ProductDetails /> },
+      
       { path: "categories", element: <Categories /> },
       { path: "brands", element: <Brands /> },
       { path: "login", element: <Login /> },

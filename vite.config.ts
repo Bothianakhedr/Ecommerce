@@ -12,7 +12,8 @@ export default defineConfig({
       "@shared": path.resolve(__dirname, "src/shared"),
       "@feature": path.resolve(__dirname, "src/feature"), // matches your folder
       "@hooks": path.resolve(__dirname, "src/hooks"),
-      "@data": path.resolve(__dirname, "src/data")
+      "@data": path.resolve(__dirname, "src/data"),
+      "@context": path.resolve(__dirname, "src/context")
     }
   }
 })

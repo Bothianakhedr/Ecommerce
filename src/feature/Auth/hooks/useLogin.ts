@@ -7,9 +7,13 @@ import type { ErrorResponseType, TInputLoginForm } from "../types/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../validation/authValidation";
 import type { AxiosError } from "axios";
+import { useContext } from "react";
+import { AuthContext } from "@context/AuthContext";
 
 export const useLogin = () => {
+  const {setToken} = useContext(AuthContext)
   const navigate = useNavigate();
+  
   const {
     register,
     handleSubmit,
@@ -22,7 +26,10 @@ export const useLogin = () => {
     mutationFn: (data: TInputLoginForm) => loginServices(data),
     onSuccess: (responseData) => {
       toast.success("login successfully");
-      localStorage.setItem("token", JSON.stringify(responseData.token));
+      localStorage.setItem("token",responseData.token);
+      setToken(responseData.token)
+      console.log(responseData.token);
+      
       navigate("/");
     },
     onError: (error: unknown) => {
