@@ -8,7 +8,7 @@ import { Loading } from "@shared/ui/Loading";
 import ReactImageGallery from "react-image-gallery";
 
 import { Button } from "@shared/ui";
- export const ProductDetails = () => {
+export const ProductDetails = () => {
   const { id } = useParams();
 
   function getProductDetails() {
@@ -21,7 +21,7 @@ import { Button } from "@shared/ui";
 
   const productDetails = data?.data?.data;
 
-  const imageList = productDetails?.images?.map((imageURL:string) => {
+  const imageList = productDetails?.images?.map((imageURL: string) => {
     return {
       original: imageURL,
       thumbnail: imageURL,
@@ -44,7 +44,6 @@ import { Button } from "@shared/ui";
             showNav={false}
             showPlayButton={false}
             items={imageList}
-            
           />
         </div>
         <div className="col-span-7 text-center md:text-left mt-10 md:mt-5  px-5">
@@ -73,4 +72,3 @@ import { Button } from "@shared/ui";
     </>
   );
 };
-

@@ -13,6 +13,7 @@ export const ProductCard = ({ product }: { product: TProduct }) => {
     ratingsAverage,
     imageCover,
     priceAfterDiscount,
+    _id,
   } = product;
 
   return (
@@ -26,7 +27,7 @@ export const ProductCard = ({ product }: { product: TProduct }) => {
 
         {priceAfterDiscount && (
           <span className="absolute top-2 left-2 z-10 bg-pink-600 text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm">
-             {Math.round(100 - (priceAfterDiscount / price) * 100)}%
+            {Math.round(100 - (priceAfterDiscount / price) * 100)}%
           </span>
         )}
 
@@ -47,7 +48,7 @@ export const ProductCard = ({ product }: { product: TProduct }) => {
               <FaCartPlus />
             </Link>
             <Link
-              to={`/product/${product._id}`}
+              to={`/product/${_id}`}
               className="bg-white text-pink-500 w-9 h-9 hover:bg-pink-500 hover:text-white transition-all duration-300 rounded-full flex items-center justify-center shadow-lg"
             >
               <FaRegEye />
