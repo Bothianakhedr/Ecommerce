@@ -27,3 +27,10 @@ export type TProduct = {
 export type TProductResponse = {
   data: TProduct[];
 };
+
+export type TProductDetailsSubCategory={
+  name:string ,
+  _id:string
+  
+
+}

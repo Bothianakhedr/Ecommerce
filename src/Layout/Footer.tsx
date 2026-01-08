@@ -19,7 +19,7 @@ export const Footer = () => {
           <div className="w-full md:flex-1">
             <Input type="email" placeholder="Email Address" />
           </div>
-          <Button>Share App Link</Button>
+          <Button className="md:w-fit">Share App Link</Button>
         </div>
 
         <div className="flex flex-col lg:flex-row justify-between items-center py-4 gap-6">

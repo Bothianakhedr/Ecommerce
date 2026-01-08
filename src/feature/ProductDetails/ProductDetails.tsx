@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { axiosInstance } from "../../axiosConfig/axiosInstance";
 import { useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
@@ -8,19 +7,18 @@ import { Loading } from "@shared/ui/Loading";
 import ReactImageGallery from "react-image-gallery";
 
 import { Button } from "@shared/ui";
+import { getProductDetails } from "../../services/getProductDetails";
+import type { TProductDetailsSubCategory } from "types";
 export const ProductDetails = () => {
   const { id } = useParams();
 
-  function getProductDetails() {
-    return axiosInstance.get(`/api/v1/products/${id}`);
-  }
   const { data, isLoading, error, isError } = useQuery({
     queryKey: ["productDetails", id],
-    queryFn: getProductDetails,
+    queryFn: () => getProductDetails(id!),
+    enabled: !!id,
   });
 
-  const productDetails = data?.data?.data;
-
+  const productDetails = data?.data;
   const imageList = productDetails?.images?.map((imageURL: string) => {
     return {
       original: imageURL,
@@ -37,7 +35,7 @@ export const ProductDetails = () => {
   return (
     <>
       <div className="md:grid grid-cols-12 py-8">
-        <div className="col-span-5">
+        <div className="col-span-4">
           <ReactImageGallery
             showFullscreenButton={false}
             showBullets={false}
@@ -46,18 +44,8 @@ export const ProductDetails = () => {
             items={imageList}
           />
         </div>
-        <div className="col-span-7 text-center md:text-left mt-10 md:mt-5  px-5">
+        <div className="col-span-8 text-center md:text-left mt-10 md:mt-5  px-5">
           <h2 className="font-bold text-2xl">{productDetails.title}</h2>
-          <span className="text-xl font-semibold mt-2 block text-pink-500">
-            {productDetails.price} EGP
-          </span>
-          <p className="text-gray-600 mt-3 ">{productDetails.description}</p>
-          <h3 className="text-pink-600 mt-2 font-semibold">
-            {productDetails.category.name}
-          </h3>
-          <h5 className="bg-pink-500 mx-auto md:mx-0 text-white w-fit px-2 py-1 mt-2 rounded">
-            Brand: {productDetails.brand.name}
-          </h5>
           <div className="flex items-center gap-2 mt-3 justify-center md:justify-start">
             <FaStar className="text-yellow-400" />
             <span>{productDetails.ratingsAverage} / 5</span>
@@ -66,7 +54,44 @@ export const ProductDetails = () => {
             </span>
           </div>
 
-          <Button className="mt-2 ">ADD TO CART</Button>
+          <span className="text-2xl font-semibold mt-2 block ">
+            {productDetails.price} EGP
+          </span>
+          {productDetails.quantity > 0 ? (
+            <span className="text-green-600 text-sm">In stock</span>
+          ) : (
+            <span className="text-red-600 text-sm">Out of stock</span>
+          )}
+          <p className=" mt-3 whitespace-pre-line text-gray-600 ">
+            {productDetails.description}
+          </p>
+          <h3 className="font-semibold mt-2">
+            Category:{" "}
+            <span className="text-pink-500">
+              {productDetails.category.name}
+            </span>
+          </h3>
+          {productDetails.subcategory.map((sub: TProductDetailsSubCategory) => (
+            <span
+              key={sub._id}
+              className="bg-gray-100 rounded-md inline-block px-2 py-1 text-sm mt-2"
+            >
+              {sub.name}
+            </span>
+          ))}
+
+          <div className="flex items-center gap-2 mt-3">
+            <img
+              src={productDetails.brand.image}
+              alt={productDetails.brand.name}
+              className="w-10 h-10 object-contain"
+            />
+            <span className="font-semibold">{productDetails.brand.name}</span>
+          </div>
+
+          <Button className="w-full" disabled={productDetails.quantity === 0}>
+            {productDetails.quantity === 0 ? "Out of Stock" : "+ Add to Cart"}
+          </Button>
         </div>
       </div>
     </>
