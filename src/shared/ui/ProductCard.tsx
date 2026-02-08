@@ -4,6 +4,7 @@ import { FaRegEye } from "react-icons/fa";
 import { FaCartPlus } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import type { TProduct } from "../../types";
+import {  cartInfoAtom } from "@feature/Cart/atoms/cart-atom";
 
 export const ProductCard = ({ product }: { product: TProduct }) => {
   const {
@@ -43,6 +44,7 @@ export const ProductCard = ({ product }: { product: TProduct }) => {
             <Link
               to={""}
               title="Add to cart"
+              onClick={() => cartInfoAtom.addProductToCart(_id)}
               className="bg-white text-pink-500 w-9 h-9 hover:bg-pink-500 hover:text-white transition-all duration-300 rounded-full flex items-center justify-center shadow-lg"
             >
               <FaCartPlus />

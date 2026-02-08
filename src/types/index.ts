@@ -12,8 +12,8 @@ export type TProduct = {
   title: string;
   price: number;
   ratingsAverage: number;
-  priceAfterDiscount:number;
-  imageCover:string
+  priceAfterDiscount: number;
+  imageCover: string;
 
   description: string;
   images: string[];
@@ -28,9 +28,7 @@ export type TProductResponse = {
   data: TProduct[];
 };
 
-export type TProductDetailsSubCategory={
-  name:string ,
-  _id:string
-  
-
-}
+export type TProductDetailsSubCategory = {
+  name: string;
+  _id: string;
+};

@@ -1,14 +1,14 @@
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { Loading } from "@shared/ui/Loading";
 import ReactImageGallery from "react-image-gallery";
-
 import { Button } from "@shared/ui";
 import { getProductDetails } from "../../services/getProductDetails";
 import type { TProductDetailsSubCategory } from "types";
+import { useEffect } from "react";
+import { cartInfoAtom } from "@feature/Cart/atoms/cart-atom";
 export const ProductDetails = () => {
   const { id } = useParams();
 
@@ -89,7 +89,11 @@ export const ProductDetails = () => {
             <span className="font-semibold">{productDetails.brand.name}</span>
           </div>
 
-          <Button className="w-full" disabled={productDetails.quantity === 0}>
+          <Button
+            onClick={() => cartInfoAtom.addProductToCart(productDetails.id)}
+            className="w-full"
+            disabled={productDetails.quantity === 0}
+          >
             {productDetails.quantity === 0 ? "Out of Stock" : "+ Add to Cart"}
           </Button>
         </div>

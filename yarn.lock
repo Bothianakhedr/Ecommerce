@@ -461,6 +461,31 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
+"@mongez/atom@^1.0.0":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@mongez/atom/-/atom-1.0.3.tgz#d32280dd05ad4de30ac5638678cb437fb0ffd82e"
+  integrity sha512-CEZqwmFq2g/vmEOwXA3JXX/JOJcXQMu/CqhZP9seBKRIi74AQ52VOzYdf7mbzt7YbVjvdDOk4Bt6K/fpvl8xNg==
+  dependencies:
+    "@mongez/events" "^2.1.0"
+    "@mongez/reinforcements" "^2.3.10"
+
+"@mongez/events@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@mongez/events/-/events-2.1.0.tgz#644fa0c0ae226f162ccca4a755a059892d545253"
+  integrity sha512-gUTDm8fy0BRJmG/kkSmLi/Ir2PAFQQtk0FE9GGivnIK5YpGJD6MFrIj3Ui8SN3mMFKvCJae6zJjuYv6fLFQgBQ==
+
+"@mongez/react-atom@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@mongez/react-atom/-/react-atom-5.1.0.tgz#795a4858f8e94dc6ce7f62c7f7d6ae4a07613b2a"
+  integrity sha512-s/fr5auGQsJVu7Mg1EWv/QQmbnWJKOEv13fL6MkBje2CAQQDGHOXL8LBx3BggeqGsi2qPERdObbF0eCtW1XfTQ==
+  dependencies:
+    "@mongez/atom" "^1.0.0"
+
+"@mongez/reinforcements@^2.3.10":
+  version "2.3.18"
+  resolved "https://registry.yarnpkg.com/@mongez/reinforcements/-/reinforcements-2.3.18.tgz#4f4f3447700fc6d4a3ea73233bde124fb36aacbf"
+  integrity sha512-dq4mh0KFZZ3F2eWKcmm7ynOeXxz3n25Gb1j5l69e6E6UyPs0fivr0FkSPmgH+faqjCdxK+aWy2GsXGQ1Ovaiyw==
+
 "@napi-rs/wasm-runtime@^1.0.7":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@napi-rs/wasm-runtime/-/wasm-runtime-1.1.0.tgz#c0180393d7862cff0d412e3e1a7c3bd5ea6d9b2f"
