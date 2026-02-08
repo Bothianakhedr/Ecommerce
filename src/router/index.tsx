@@ -12,6 +12,7 @@ import {
   Products,
   Register,
 } from "../feature";
+import ProtectedRoute from "@shared/components/ProtectedRoute";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -20,7 +21,14 @@ export const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: "products", element: <Products /> },
       { path: `product/:id`, element: <ProductDetails /> },
-      { path: "cart", element: <Cart /> },
+      {
+        path: "cart",
+        element: (
+          <ProtectedRoute>
+            <Cart />
+          </ProtectedRoute>
+        ),
+      },
       { path: "categories", element: <Categories /> },
       { path: "brands", element: <Brands /> },
       { path: "login", element: <Login /> },

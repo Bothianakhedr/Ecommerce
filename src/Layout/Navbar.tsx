@@ -16,7 +16,7 @@ export const Navbar = () => {
 
   useEffect(() => {
     cartInfoAtom.getCartItems();
-  }, []);
+  }, [token]);
   return (
     <nav className="bg-pink-400 p-2">
       <div className="container mx-auto flex items-center justify-between gap-8">

@@ -6,7 +6,6 @@ import { FaTrashAlt } from "react-icons/fa";
 
 export const Cart = () => {
   const { products, totalCartPrice } = cartInfoAtom.useValue();
-console.log(products);
 
   return (
     <section className="p-9">

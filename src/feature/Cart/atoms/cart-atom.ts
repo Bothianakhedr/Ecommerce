@@ -1,8 +1,8 @@
-import { authAtom } from "@feature/Auth/atoms/auth-atom";
 import { axiosInstance } from "../../../axiosConfig/axiosInstance";
 import toast from "react-hot-toast";
 import { atom } from "@mongez/react-atom";
 import type { CartInfo } from "../types";
+import axios from "axios";
 
 export const cartInfoAtom = atom<CartInfo>({
   key: "cart",
@@ -13,15 +13,8 @@ export const cartInfoAtom = atom<CartInfo>({
   },
   actions: {
     addProductToCart: async (productId: string) => {
-      const token = authAtom.value;
       try {
-        const { data } = await axiosInstance.post(
-          "api/v1/cart",
-          { productId },
-          {
-            headers: { token },
-          },
-        );
+        const { data } = await axiosInstance.post("api/v1/cart", { productId });
         toast.success(data.message);
         cartInfoAtom.update({
           numOfCartItems: data.numOfCartItems,
@@ -29,25 +22,23 @@ export const cartInfoAtom = atom<CartInfo>({
           products: data.data.products,
         });
       } catch (error) {
-        console.log(error);
+        if (axios.isAxiosError(error)) {
+          toast.error(error.message);
+        }
       }
     },
     getCartItems: async () => {
-      const token = authAtom.value;
       try {
-        const { data } = await axiosInstance.get("api/v1/cart", {
-          headers: {
-            token,
-          },
-        });
-        console.log(data);
+        const { data } = await axiosInstance.get("api/v1/cart");
         cartInfoAtom.update({
           numOfCartItems: data.numOfCartItems,
           totalCartPrice: data.data.totalCartPrice,
           products: data.data.products,
         });
       } catch (error) {
-        console.log(error);
+        if (axios.isAxiosError(error)) {
+          toast.error(error.message);
+        }
       }
     },
   },
