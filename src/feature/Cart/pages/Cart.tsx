@@ -47,7 +47,7 @@ export const Cart = () => {
                   <img
                     src={product.product.imageCover}
                     alt="product"
-                    className="w-24 h-24 object-contain bg-white border rounded"
+                    className="w-24 h-24 object-contain bg-white border border-pink-300 rounded"
                   />
 
                   <div>
@@ -61,7 +61,7 @@ export const Cart = () => {
                     <button
                       className="mt-2 flex items-center gap-2 text-white bg-red-500 hover:bg-red-600 px-3 py-1 rounded-md text-sm transition-all"
                       onClick={() => {
-                        /* هنا هننادي removeItem من الـ Atom */
+                        cartInfoAtom.deleteCartItem(product?.product?.id);
                       }}
                     >
                       <FaTrashAlt /> REMOVE
@@ -71,9 +71,12 @@ export const Cart = () => {
 
                 <div className="flex items-center gap-4">
                   <button
-                    className="w-8 h-8 flex items-center justify-center bg-pink-500 text-white rounded-md hover:bg-pink-600 font-bold"
+                    className="w-8 h-8 flex items-center justify-center bg-pink-400 text-white rounded-md hover:bg-pink-600 font-bold"
                     onClick={() => {
-                      /* أكشن تقليل الكمية */
+                      cartInfoAtom.updateCartProductQuantity(
+                        product?.product?.id,
+                        product.count - 1,
+                      );
                     }}
                   >
                     -
@@ -84,9 +87,12 @@ export const Cart = () => {
                   </span>
 
                   <button
-                    className="w-8 h-8 flex items-center justify-center bg-pink-500 text-white rounded-md hover:bg-pink-600 font-bold"
+                    className="w-8 h-8 flex items-center justify-center bg-pink-400 text-white rounded-md hover:bg-pink-600 font-bold"
                     onClick={() => {
-                      /* أكشن زيادة الكمية */
+                      cartInfoAtom.updateCartProductQuantity(
+                        product?.product?.id,
+                        product.count + 1,
+                      );
                     }}
                   >
                     +
