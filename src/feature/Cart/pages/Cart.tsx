@@ -3,6 +3,8 @@ import { FaCartPlus } from "react-icons/fa";
 import { cartInfoAtom } from "../atoms/cart-atom";
 import type { CartProduct } from "../types";
 import { FaTrashAlt } from "react-icons/fa";
+import { Button } from "@shared/ui";
+import { handleClearCart } from "../helper";
 
 export const Cart = () => {
   const { products, totalCartPrice } = cartInfoAtom.useValue();
@@ -10,7 +12,7 @@ export const Cart = () => {
   return (
     <section className="p-9">
       <div className="container mx-auto bg-gray-50 rounded-md p-7">
-        <h2 className="text-2xl font-semibold mb-2 text-pink-500 flex items-center gap-2">
+        <h2 className="text-2xl font-semibold mb-3 text-pink-600 flex items-center gap-2">
           <span>Shop Cart</span>
           <span>
             <FaCartPlus />
@@ -59,7 +61,7 @@ export const Cart = () => {
                     </p>
 
                     <button
-                      className="mt-2 flex items-center gap-2 text-white bg-red-500 hover:bg-red-600 px-3 py-1 rounded-md text-sm transition-all"
+                      className="mt-2 flex items-center cursor-pointer gap-2 text-white bg-red-800 hover:bg-red-700 px-3 py-1 rounded-md text-sm transition-all"
                       onClick={() => {
                         cartInfoAtom.deleteCartItem(product?.product?.id);
                       }}
@@ -71,7 +73,7 @@ export const Cart = () => {
 
                 <div className="flex items-center gap-4">
                   <button
-                    className="w-8 h-8 flex items-center justify-center bg-pink-400 text-white rounded-md hover:bg-pink-600 font-bold"
+                    className="w-8 h-8 flex items-center  cursor-pointer justify-center bg-pink-600 text-white rounded-md hover:bg-pink-700 font-bold focus:border-0 focus:outline-0"
                     onClick={() => {
                       cartInfoAtom.updateCartProductQuantity(
                         product?.product?.id,
@@ -87,7 +89,7 @@ export const Cart = () => {
                   </span>
 
                   <button
-                    className="w-8 h-8 flex items-center justify-center bg-pink-400 text-white rounded-md hover:bg-pink-600 font-bold"
+                    className="w-8 h-8 flex items-center justify-center cursor-pointer bg-pink-600 text-white rounded-md hover:bg-pink-700 font-bold focus:border-0 focus:outline-0"
                     onClick={() => {
                       cartInfoAtom.updateCartProductQuantity(
                         product?.product?.id,
@@ -102,6 +104,13 @@ export const Cart = () => {
             ))}
           </div>
         )}
+        <div className="flex justify-end">
+          {products.length > 0 && (
+            <Button onClick={handleClearCart} className="w-fit mt-6">
+              Clear Cart
+            </Button>
+          )}
+        </div>
       </div>
     </section>
   );

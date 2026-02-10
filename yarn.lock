@@ -2018,6 +2018,11 @@ supports-color@^7.1.0:
   dependencies:
     has-flag "^4.0.0"
 
+sweetalert2@^11.26.18:
+  version "11.26.18"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.26.18.tgz#86077ab19cd55f36d709e01a9b72ac4aef4c778e"
+  integrity sha512-3O5feBqV+hTIOwCRKGuZGHosjiuBAKP/vpBl6vKFZeVYfCUGdXqXuuidn6YXHan3f6e62UdmnjwJBt8UtDVBhg==
+
 swiper@^12.0.3:
   version "12.0.3"
   resolved "https://registry.yarnpkg.com/swiper/-/swiper-12.0.3.tgz#c7804fd39955189d3ec652d9832896bd3d04733e"

@@ -2,7 +2,7 @@ import { axiosInstance } from "../../../axiosConfig/axiosInstance";
 import toast from "react-hot-toast";
 import { atom } from "@mongez/react-atom";
 import type { CartInfo } from "../types";
-import axios from "axios";
+import { handleAxiosError } from "../helper";
 
 export const cartInfoAtom = atom<CartInfo>({
   key: "cart",
@@ -21,9 +21,7 @@ export const cartInfoAtom = atom<CartInfo>({
           products: data.data.products,
         });
       } catch (error) {
-        if (axios.isAxiosError(error)) {
-          toast.error(error.message);
-        }
+        handleAxiosError(error);
       }
     },
     addProductToCart: async (productId: string) => {
@@ -32,9 +30,7 @@ export const cartInfoAtom = atom<CartInfo>({
         toast.success(data.message);
         cartInfoAtom.getCartItems();
       } catch (error) {
-        if (axios.isAxiosError(error)) {
-          toast.error(error.message);
-        }
+        handleAxiosError(error);
       }
     },
     updateCartProductQuantity: async (productId: string, newCount: number) => {
@@ -48,9 +44,7 @@ export const cartInfoAtom = atom<CartInfo>({
           products: data.data.products,
         });
       } catch (error) {
-        if (axios.isAxiosError(error)) {
-          toast.error(error.message);
-        }
+        handleAxiosError(error);
       }
     },
     deleteCartItem: async (productId: string) => {
@@ -61,8 +55,21 @@ export const cartInfoAtom = atom<CartInfo>({
           totalCartPrice: data.data.totalCartPrice,
           products: data.data.products,
         });
+        toast.success("product deleted successfully");
       } catch (error) {
-        console.log(error);
+        handleAxiosError(error);
+      }
+    },
+    clearUserCart: async () => {
+      try {
+        await axiosInstance.delete("api/v1/cart");
+        cartInfoAtom.update({
+          products: [],
+          numOfCartItems: 0,
+          totalCartPrice: 0,
+        });
+      } catch (error) {
+        handleAxiosError(error);
       }
     },
   },

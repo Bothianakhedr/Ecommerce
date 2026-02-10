@@ -90,7 +90,7 @@ export const ProductDetails = () => {
           </div>
 
           <Button
-            onClick={() => cartInfoAtom.addProductToCart(productDetails.id)}
+            onClick={() => cartInfoAtom.addProductToCart(id)}
             className="w-full"
             disabled={productDetails.quantity === 0}
           >
