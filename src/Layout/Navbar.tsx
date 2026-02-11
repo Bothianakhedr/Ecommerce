@@ -15,7 +15,7 @@ export const Navbar = () => {
   };
 
   useEffect(() => {
-    cartInfoAtom.getCartItems();
+    if (token && typeof token === 'string') cartInfoAtom.getCartItems();
   }, [token]);
   return (
     <nav className="bg-pink-400 p-2">

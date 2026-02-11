@@ -15,6 +15,8 @@ export const cartInfoAtom = atom<CartInfo>({
     getCartItems: async () => {
       try {
         const { data } = await axiosInstance.get("api/v1/cart");
+        console.log(data);
+        
         cartInfoAtom.update({
           numOfCartItems: data.numOfCartItems,
           totalCartPrice: data.data.totalCartPrice,

@@ -8,6 +8,8 @@ import { handleClearCart } from "../helper";
 
 export const Cart = () => {
   const { products, totalCartPrice } = cartInfoAtom.useValue();
+  console.log(products);
+  
 
   return (
     <section className="p-9">
