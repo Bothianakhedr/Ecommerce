@@ -8,8 +8,6 @@ import { handleClearCart } from "../helper";
 
 export const Cart = () => {
   const { products, totalCartPrice } = cartInfoAtom.useValue();
-  console.log(products);
-  
 
   return (
     <section className="p-9">
@@ -114,6 +112,12 @@ export const Cart = () => {
           )}
         </div>
       </div>
+      <Link
+        to="/checkout"
+        className="block mt-3 ms-auto bg-pink-500 hover:bg-pink-700 text-white transition-colors w-fit px-8 py-2 rounded-md cursor-pointer"
+      >
+        Next step
+      </Link>
     </section>
   );
 };

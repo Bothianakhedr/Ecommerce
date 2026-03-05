@@ -10,17 +10,18 @@ export const cartInfoAtom = atom<CartInfo>({
     numOfCartItems: 0,
     totalCartPrice: 0,
     products: [],
+    cartId: "",
   },
   actions: {
     getCartItems: async () => {
       try {
         const { data } = await axiosInstance.get("api/v1/cart");
-        console.log(data);
         
         cartInfoAtom.update({
           numOfCartItems: data.numOfCartItems,
           totalCartPrice: data.data.totalCartPrice,
           products: data.data.products,
+          cartId: data.cartId,
         });
       } catch (error) {
         handleAxiosError(error);

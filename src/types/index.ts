@@ -22,6 +22,9 @@ export type TProduct = {
     image: string;
     _id: string;
   };
+  brand: {
+    name: string;
+  };
 };
 
 export type TProductResponse = {

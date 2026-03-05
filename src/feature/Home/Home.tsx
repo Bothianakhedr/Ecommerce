@@ -1,14 +1,13 @@
-
-import { Products } from "@feature/Products/Products";
-import { HomeSlider , HomeCategoriesSlider } from "./components/index";
+import { HomeSlider, HomeCategoriesSlider } from "./components/index";
+import HomeProducts from "./components/HomeProducts.tsx";
 
 export const Home = () => {
   return (
     <div>
-      <div className="container mx-auto">
+      <div className="container mx-auto bg-white">
         <HomeSlider />
         <HomeCategoriesSlider />
-        <Products />
+        <HomeProducts />
       </div>
     </div>
   );

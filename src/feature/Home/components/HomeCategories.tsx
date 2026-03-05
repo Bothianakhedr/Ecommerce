@@ -16,7 +16,7 @@ export const HomeCategoriesSlider = () => {
   const categories = data?.data;
 
   return (
-    <div className="my-8">
+    <div className="py-12 dark:bg-gray-900">
       <Swiper
         modules={[Autoplay]}
         autoplay={{ delay: 2000 }}
@@ -37,7 +37,9 @@ export const HomeCategoriesSlider = () => {
                 src={cat.image}
                 alt={cat.name}
               />
-              <h3 className="mt-2 text-sm font-semibold">{cat.name}</h3>
+              <h3 className="mt-2 text-sm font-semibold dark:text-white">
+                {cat.name}
+              </h3>
             </div>
           </SwiperSlide>
         ))}

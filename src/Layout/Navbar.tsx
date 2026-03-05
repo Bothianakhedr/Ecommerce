@@ -3,11 +3,17 @@ import logo from "../assets/original-dbbc84c08bd6b4b49fc97827fa5be468.webp";
 import { FaCartPlus } from "react-icons/fa";
 import { authAtom } from "@feature/Auth/atoms/auth-atom";
 import { cartInfoAtom } from "@feature/Cart/atoms/cart-atom";
-import { useEffect } from "react";
+import { FaRegSun } from "react-icons/fa";
+import { FaRegMoon } from "react-icons/fa";
+
+import { useContext, useEffect } from "react";
+import { ThemeContext } from "@context/ThemeContext";
 
 export const Navbar = () => {
   const token = authAtom.useValue();
   const { numOfCartItems } = cartInfoAtom.useValue();
+  const { theme, setTheme } = useContext(ThemeContext);
+  console.log(theme);
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -15,10 +21,10 @@ export const Navbar = () => {
   };
 
   useEffect(() => {
-    if (token && typeof token === 'string') cartInfoAtom.getCartItems();
+    if (token && typeof token === "string") cartInfoAtom.getCartItems();
   }, [token]);
   return (
-    <nav className="bg-pink-400 p-2">
+    <nav className="bg-pink-400 p-2 dark:bg-pink-500 ">
       <div className="container mx-auto flex items-center justify-between gap-8">
         <div className="flex items-center gap-8">
           {/* Logo */}
@@ -47,6 +53,16 @@ export const Navbar = () => {
         </div>
 
         <ul className="flex items-center gap-8 text-white font-medium">
+          <div
+            className=" flex gap-4 items-center"
+            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+          >
+            {theme === "light" ? (
+              <FaRegSun className="text-white text-2xl cursor-pointer" />
+            ) : (
+              <FaRegMoon className="text-white text-2xl cursor-pointer" />
+            )}
+          </div>
           {token && (
             <Link to="/cart" className="relative me-10">
               <FaCartPlus className="text-3xl font-bold" />

@@ -1,6 +1,8 @@
 export type CartInfo = {
   numOfCartItems: number;
   totalCartPrice: number;
+  cartId?: string;
+
   products: [];
 };
 
@@ -16,4 +18,4 @@ export type CartProduct = {
     id: string;
   };
   _id: string;
-}
+};

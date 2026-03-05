@@ -18,7 +18,7 @@ export const ProductCard = ({ product }: { product: TProduct }) => {
   } = product;
 
   return (
-    <div className="group shadow-md hover:shadow-xl rounded-md overflow-hidden transition-all duration-300 bg-white">
+    <div className="group shadow-md hover:shadow-xl rounded-md overflow-hidden transition-all duration-300 bg-white dark:bg-gray-700">
       <div className="relative overflow-hidden">
         <img
           className="w-full transition-transform duration-500 group-hover:scale-105"
@@ -60,11 +60,11 @@ export const ProductCard = ({ product }: { product: TProduct }) => {
       </div>
 
       <div className="p-3">
-        <h3 className="text-pink-600 text-xs font-medium mb-1">
+        <h3 className="text-pink-600 text-xs font-medium mb-1 dark:text-white">
           {category.name}
         </h3>
         <h2
-          className="text-gray-800 font-bold line-clamp-1 mb-2 h-6"
+          className="text-gray-800 font-bold line-clamp-1 mb-2 h-6 dark:text-white"
           title={title}
         >
           {title}
@@ -74,13 +74,13 @@ export const ProductCard = ({ product }: { product: TProduct }) => {
           <div className="flex flex-col">
             {priceAfterDiscount ? (
               <>
-                <span className="text-gray-900 font-bold">
+                <span className="text-gray-900 font-bold dark:text-gray-200" >
                   {priceAfterDiscount} L.E
                 </span>
                 <del className="text-gray-400 text-xs">{price} L.E</del>
               </>
             ) : (
-              <span className="text-gray-900 font-bold">{price} L.E</span>
+              <span className="text-gray-900 font-bold dark:text-gray-200">{price} L.E</span>
             )}
           </div>
 

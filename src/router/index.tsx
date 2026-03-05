@@ -13,6 +13,7 @@ import {
   Register,
 } from "../feature";
 import ProtectedRoute from "@shared/components/ProtectedRoute";
+import Checkout from "@feature/Checkout/Checkout";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -34,6 +35,7 @@ export const router = createBrowserRouter([
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
       { path: "forgotPassword", element: <ForgotPassword /> },
+      { path: "checkout", element: <Checkout /> },
     ],
   },
   { path: "*", element: <PageNotFound /> },
