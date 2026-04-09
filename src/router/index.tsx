@@ -14,6 +14,7 @@ import {
 } from "../feature";
 import ProtectedRoute from "@shared/components/ProtectedRoute";
 import Checkout from "@feature/Checkout/Checkout";
+import { AllOrders } from "@feature/AllOrders/page/AllOrders";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -35,7 +36,22 @@ export const router = createBrowserRouter([
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
       { path: "forgotPassword", element: <ForgotPassword /> },
-      { path: "checkout", element: <Checkout /> },
+      {
+        path: "checkout",
+        element: (
+          <ProtectedRoute>
+            <Checkout />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "allorders",
+        element: (
+          <ProtectedRoute>
+            <AllOrders />
+          </ProtectedRoute>
+        ),
+      },
     ],
   },
   { path: "*", element: <PageNotFound /> },

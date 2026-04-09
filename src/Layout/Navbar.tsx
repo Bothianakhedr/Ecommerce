@@ -49,6 +49,9 @@ export const Navbar = () => {
             <li className="font-semibold text-white tracking-wide">
               <NavLink to="/brands">Brands</NavLink>
             </li>
+            <li className="font-semibold text-white tracking-wide">
+              <NavLink to="/allorders">Orders</NavLink>
+            </li>
           </ul>
         </div>
 

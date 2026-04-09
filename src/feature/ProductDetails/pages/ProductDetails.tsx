@@ -5,10 +5,11 @@ import toast from "react-hot-toast";
 import { Loading } from "@shared/ui/Loading";
 import ReactImageGallery from "react-image-gallery";
 import { Button } from "@shared/ui";
-import { getProductDetails } from "../../services/getProductDetails";
 import type { TProductDetailsSubCategory } from "types";
 import { useEffect } from "react";
 import { cartInfoAtom } from "@feature/Cart/atoms/cart-atom";
+import { Helmet } from "react-helmet-async";
+import { getProductDetails } from "../services/getProductDetails";
 export const ProductDetails = () => {
   const { id } = useParams();
 
@@ -44,6 +45,9 @@ export const ProductDetails = () => {
             items={imageList}
           />
         </div>
+        <Helmet>
+          <title>{productDetails.title}</title>
+        </Helmet>
         <div className="col-span-8 text-center md:text-left mt-10 md:mt-5  px-5">
           <h2 className="font-bold text-2xl">{productDetails.title}</h2>
           <div className="flex items-center gap-2 mt-3 justify-center md:justify-start">
