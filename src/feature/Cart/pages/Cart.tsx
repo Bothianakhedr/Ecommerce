@@ -6,6 +6,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { Button } from "@shared/ui";
 import { handleClearCart } from "../helper";
 import { Helmet } from "react-helmet-async";
+import { deleteCartItem, updateCartProductQuantity } from "../services";
 
 export const Cart = () => {
   const { products, totalCartPrice } = cartInfoAtom.useValue();
@@ -69,7 +70,7 @@ export const Cart = () => {
                       <button
                         className="mt-2 flex items-center cursor-pointer gap-2 text-white bg-red-800 hover:bg-red-700 px-3 py-1 rounded-md text-sm transition-all"
                         onClick={() => {
-                          cartInfoAtom.deleteCartItem(product?.product?.id);
+                          deleteCartItem(product?.product?.id);
                         }}
                       >
                         <FaTrashAlt /> REMOVE
@@ -81,7 +82,7 @@ export const Cart = () => {
                     <button
                       className="w-8 h-8 flex items-center  cursor-pointer justify-center bg-pink-600 text-white rounded-md hover:bg-pink-700 font-bold focus:border-0 focus:outline-0"
                       onClick={() => {
-                        cartInfoAtom.updateCartProductQuantity(
+                        updateCartProductQuantity(
                           product?.product?.id,
                           product.count - 1,
                         );
@@ -97,7 +98,7 @@ export const Cart = () => {
                     <button
                       className="w-8 h-8 flex items-center justify-center cursor-pointer bg-pink-600 text-white rounded-md hover:bg-pink-700 font-bold focus:border-0 focus:outline-0"
                       onClick={() => {
-                        cartInfoAtom.updateCartProductQuantity(
+                        updateCartProductQuantity(
                           product?.product?.id,
                           product.count + 1,
                         );

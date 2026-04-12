@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
-import { cartInfoAtom } from "../atoms/cart-atom";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { clearUserCart } from "../services";
 export function handleClearCart() {
   Swal.fire({
     title: "Are you sure?",
@@ -13,7 +13,7 @@ export function handleClearCart() {
     confirmButtonText: "Yes, clear it!",
   }).then((result) => {
     if (result.isConfirmed) {
-      cartInfoAtom.clearUserCart();
+      clearUserCart();
       toast.success("Cart cleared successfully");
     }
   });

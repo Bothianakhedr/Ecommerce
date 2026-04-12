@@ -7,9 +7,9 @@ import ReactImageGallery from "react-image-gallery";
 import { Button } from "@shared/ui";
 import type { TProductDetailsSubCategory } from "types";
 import { useEffect } from "react";
-import { cartInfoAtom } from "@feature/Cart/atoms/cart-atom";
 import { Helmet } from "react-helmet-async";
-import { getProductDetails } from "../services/getProductDetails";
+import { addProductToCart, getProductDetails } from "../services/getProductDetails";
+
 export const ProductDetails = () => {
   const { id } = useParams();
 
@@ -18,6 +18,8 @@ export const ProductDetails = () => {
     queryFn: () => getProductDetails(id!),
     enabled: !!id,
   });
+
+   
 
   const productDetails = data?.data;
   const imageList = productDetails?.images?.map((imageURL: string) => {
@@ -94,7 +96,7 @@ export const ProductDetails = () => {
           </div>
 
           <Button
-            onClick={() => cartInfoAtom.addProductToCart(id)}
+            onClick={() => addProductToCart(id)}
             className="w-full"
             disabled={productDetails.quantity === 0}
           >

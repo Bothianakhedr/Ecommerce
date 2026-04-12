@@ -9,6 +9,8 @@ import { FaRegHeart } from "react-icons/fa";
 import { useContext, useEffect } from "react";
 import { ThemeContext } from "@context/ThemeContext";
 import { wishlistAtom } from "@feature/Whislist/atoms/wishlistAtom";
+import { getCartItems } from "@feature/Cart/services";
+import { getUserWishlist } from "@feature/Whislist/services";
 
 export const Navbar = () => {
   const token = authAtom.useValue();
@@ -22,8 +24,8 @@ export const Navbar = () => {
   };
 
   useEffect(() => {
-    if (token && typeof token === "string") cartInfoAtom.getCartItems();
-    if (token && typeof token === "string") wishlistAtom.getUserWishlist();
+    if (token && typeof token === "string") getCartItems();
+    if (token && typeof token === "string") getUserWishlist();
   }, [token]);
   return (
     <nav className="bg-pink-400 p-2 dark:bg-pink-500 ">
@@ -43,9 +45,7 @@ export const Navbar = () => {
             <li className="font-semibold text-white tracking-wide">
               <NavLink to="/products">Products</NavLink>
             </li>
-            <li className="font-semibold text-white tracking-wide">
-              <NavLink to="/categories">Categories</NavLink>
-            </li>
+            
             <li className="font-semibold text-white tracking-wide">
               <NavLink to="/brands">Brands</NavLink>
             </li>

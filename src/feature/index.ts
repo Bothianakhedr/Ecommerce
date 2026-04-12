@@ -1,6 +1,5 @@
 export {Home} from "./Home/Home.tsx"
 export {Products} from "./Products/Products.tsx"
-export {Categories} from "./Categories/Categories.tsx"
 export {ProductDetails} from "./ProductDetails/pages/ProductDetails.tsx"
 export {Brands} from "./Brands/pages/Brands.tsx"
 export {Wishlist} from "./Whislist/pages/Wishlist.tsx"

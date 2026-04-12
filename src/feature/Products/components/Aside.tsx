@@ -53,7 +53,7 @@ console.log([...searchParams]);
           {categories.map((name) => (
             <li key={name} className="w-36 mt-3">
               <input
-                id={name} // defacto
+                id={name} 
                 type="checkbox"
                 className="w-4 h-4 rounded-xs bg-neutral-secondary-medium"
                 checked={searchParams.get("category") === name}

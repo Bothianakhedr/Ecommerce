@@ -3,7 +3,7 @@ import { Layout } from "../Layout/Layout";
 import {
   Brands,
   Cart,
-  Categories,
+  
   ForgotPassword,
   Home,
   Login,
@@ -33,7 +33,6 @@ export const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
-      { path: "categories", element: <Categories /> },
       {
         path: "brands",
         element: <Brands />,

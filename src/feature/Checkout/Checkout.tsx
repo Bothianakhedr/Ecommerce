@@ -20,6 +20,7 @@ export default function Checkout() {
   const { cartId } = cartInfoAtom.useValue();
   const [selectedPayment, setSelectedPayment] = useState("cash");
   const [isLoading, setIsLoading] = useState(false);
+  
 
   const { register, handleSubmit } = useForm<IFormInput>({
     defaultValues: {

@@ -4,8 +4,8 @@ import { FaRegEye } from "react-icons/fa";
 import { FaCartPlus } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import type { TProduct } from "../../types";
-import { cartInfoAtom } from "@feature/Cart/atoms/cart-atom";
-import { wishlistAtom } from "@feature/Whislist/atoms/wishlistAtom";
+import { addProductToCart } from "@feature/ProductDetails/services/getProductDetails";
+import { addProductToWishlist } from "@feature/Whislist/services";
 
 export const ProductCard = ({ product }: { product: TProduct }) => {
   const {
@@ -37,14 +37,14 @@ export const ProductCard = ({ product }: { product: TProduct }) => {
           <div className="flex items-center gap-3">
             <button
               title="Add to wishlist"
-              onClick={() => wishlistAtom.addProductToWishlist(_id)}
+              onClick={() => addProductToWishlist(_id)}
               className="bg-white cursor-pointer text-pink-500 w-9 h-9  hover:bg-pink-500 hover:text-white transition-all duration-300 rounded-full flex items-center justify-center shadow-lg"
             >
               <FaHeart />
             </button>
             <button
               title="Add to cart"
-              onClick={() => cartInfoAtom.addProductToCart(_id)}
+              onClick={() => addProductToCart(_id)}
               className="bg-white cursor-pointer text-pink-500 w-9 h-9 hover:bg-pink-500 hover:text-white transition-all duration-300 rounded-full flex items-center justify-center shadow-lg"
             >
               <FaCartPlus />
