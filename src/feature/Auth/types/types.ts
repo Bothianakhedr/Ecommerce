@@ -24,6 +24,9 @@ export type TInputForgotPasswordForm = {
   email: string;
 };
 
+ export type VerifyResetCodeType = {
+  resetCode: string;
+};
 export type ErrorResponseType = {
  
         message: string;

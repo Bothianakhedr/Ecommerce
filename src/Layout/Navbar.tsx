@@ -5,15 +5,16 @@ import { authAtom } from "@feature/Auth/atoms/auth-atom";
 import { cartInfoAtom } from "@feature/Cart/atoms/cart-atom";
 import { FaRegSun } from "react-icons/fa";
 import { FaRegMoon } from "react-icons/fa";
-
+import { FaRegHeart } from "react-icons/fa";
 import { useContext, useEffect } from "react";
 import { ThemeContext } from "@context/ThemeContext";
+import { wishlistAtom } from "@feature/Whislist/atoms/wishlistAtom";
 
 export const Navbar = () => {
   const token = authAtom.useValue();
   const { numOfCartItems } = cartInfoAtom.useValue();
+  const { count } = wishlistAtom.useValue();
   const { theme, setTheme } = useContext(ThemeContext);
-  console.log(theme);
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -22,12 +23,12 @@ export const Navbar = () => {
 
   useEffect(() => {
     if (token && typeof token === "string") cartInfoAtom.getCartItems();
+    if (token && typeof token === "string") wishlistAtom.getUserWishlist();
   }, [token]);
   return (
     <nav className="bg-pink-400 p-2 dark:bg-pink-500 ">
       <div className="container mx-auto flex items-center justify-between gap-8">
         <div className="flex items-center gap-8">
-          {/* Logo */}
           <div className="logo">
             <img
               className="w-30 h-12 object-cover"
@@ -35,7 +36,6 @@ export const Navbar = () => {
               alt="eCommerce logo "
             />
           </div>
-          {/* Links */}
           <ul className="flex items-center gap-8">
             <li className="font-semibold text-white tracking-wide">
               <NavLink to="/">Home</NavLink>
@@ -51,6 +51,15 @@ export const Navbar = () => {
             </li>
             <li className="font-semibold text-white tracking-wide">
               <NavLink to="/allorders">Orders</NavLink>
+            </li>
+            <li className="">
+              <NavLink to="/wishlist" className="relative block ">
+                <FaRegHeart className="font-bold text-3xl text-white" />
+
+                <span className="text-pink-500 bg-white absolute font-semibold -right-3 -top-2 w-5 h-5 rounded-full flex items-center justify-center">
+                  {count}
+                </span>
+              </NavLink>
             </li>
           </ul>
         </div>
@@ -69,7 +78,7 @@ export const Navbar = () => {
           {token && (
             <Link to="/cart" className="relative me-10">
               <FaCartPlus className="text-3xl font-bold" />
-              <span className="text-pink-500 bg-white absolute font-semibold -right-3 -top-2.5 w-5 h-5 rounded-full flex items-center justify-center">
+              <span className="text-pink-500 bg-white absolute font-semibold -right-3 -top-2 w-5 h-5 rounded-full flex items-center justify-center">
                 {numOfCartItems === 0 ? 0 : numOfCartItems}
               </span>
             </Link>

@@ -4,7 +4,8 @@ import { FaRegEye } from "react-icons/fa";
 import { FaCartPlus } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import type { TProduct } from "../../types";
-import {  cartInfoAtom } from "@feature/Cart/atoms/cart-atom";
+import { cartInfoAtom } from "@feature/Cart/atoms/cart-atom";
+import { wishlistAtom } from "@feature/Whislist/atoms/wishlistAtom";
 
 export const ProductCard = ({ product }: { product: TProduct }) => {
   const {
@@ -34,21 +35,20 @@ export const ProductCard = ({ product }: { product: TProduct }) => {
 
         <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <div className="flex items-center gap-3">
-            <Link
-              to={""}
+            <button
               title="Add to wishlist"
-              className="bg-white text-pink-500 w-9 h-9  hover:bg-pink-500 hover:text-white transition-all duration-300 rounded-full flex items-center justify-center shadow-lg"
+              onClick={() => wishlistAtom.addProductToWishlist(_id)}
+              className="bg-white cursor-pointer text-pink-500 w-9 h-9  hover:bg-pink-500 hover:text-white transition-all duration-300 rounded-full flex items-center justify-center shadow-lg"
             >
               <FaHeart />
-            </Link>
-            <Link
-              to={""}
+            </button>
+            <button
               title="Add to cart"
               onClick={() => cartInfoAtom.addProductToCart(_id)}
-              className="bg-white text-pink-500 w-9 h-9 hover:bg-pink-500 hover:text-white transition-all duration-300 rounded-full flex items-center justify-center shadow-lg"
+              className="bg-white cursor-pointer text-pink-500 w-9 h-9 hover:bg-pink-500 hover:text-white transition-all duration-300 rounded-full flex items-center justify-center shadow-lg"
             >
               <FaCartPlus />
-            </Link>
+            </button>
             <Link
               to={`/product/${_id}`}
               className="bg-white text-pink-500 w-9 h-9 hover:bg-pink-500 hover:text-white transition-all duration-300 rounded-full flex items-center justify-center shadow-lg"
@@ -74,13 +74,15 @@ export const ProductCard = ({ product }: { product: TProduct }) => {
           <div className="flex flex-col">
             {priceAfterDiscount ? (
               <>
-                <span className="text-gray-900 font-bold dark:text-gray-200" >
+                <span className="text-gray-900 font-bold dark:text-gray-200">
                   {priceAfterDiscount} L.E
                 </span>
                 <del className="text-gray-400 text-xs">{price} L.E</del>
               </>
             ) : (
-              <span className="text-gray-900 font-bold dark:text-gray-200">{price} L.E</span>
+              <span className="text-gray-900 font-bold dark:text-gray-200">
+                {price} L.E
+              </span>
             )}
           </div>
 

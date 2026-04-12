@@ -3,12 +3,13 @@ import type {
   TInputForgotPasswordForm,
   TInputLoginForm,
   TInputRegisterForm,
+  VerifyResetCodeType,
 } from "../types/types";
 
 export const registerServices = async (data: TInputRegisterForm) => {
   const { data: responseData } = await axiosInstance.post(
     "api/v1/auth/signup",
-    data
+    data,
   );
 
   return responseData;
@@ -16,19 +17,23 @@ export const registerServices = async (data: TInputRegisterForm) => {
 export const loginServices = async (data: TInputLoginForm) => {
   const { data: responseData } = await axiosInstance.post(
     "api/v1/auth/signin",
-    data
+    data,
   );
 
   return responseData;
 };
 
 export const forgotPasswordServices = async (
-  data: TInputForgotPasswordForm
+  data: TInputForgotPasswordForm,
 ) => {
   const { data: responseData } = await axiosInstance.post(
     "api/v1/auth/forgotPasswords",
-    data
+    data,
   );
 
   return responseData;
+};
+
+export const verifyResetCode = async (data: VerifyResetCodeType) => {
+  return axiosInstance.post("api/v1/auth/verifyResetCode", data);
 };

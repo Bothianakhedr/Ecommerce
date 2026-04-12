@@ -11,6 +11,8 @@ import {
   ProductDetails,
   Products,
   Register,
+  VerifyResetCode,
+  Wishlist,
 } from "../feature";
 import ProtectedRoute from "@shared/components/ProtectedRoute";
 import Checkout from "@feature/Checkout/Checkout";
@@ -32,10 +34,11 @@ export const router = createBrowserRouter([
         ),
       },
       { path: "categories", element: <Categories /> },
-      { path: "brands", element: <Brands /> },
-      { path: "login", element: <Login /> },
-      { path: "register", element: <Register /> },
-      { path: "forgotPassword", element: <ForgotPassword /> },
+      {
+        path: "brands",
+        element: <Brands />,
+      },
+
       {
         path: "checkout",
         element: (
@@ -52,6 +55,18 @@ export const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+      {
+        path: "wishlist",
+        element: (
+          <ProtectedRoute>
+            <Wishlist/>
+          </ProtectedRoute>
+        ),
+      },
+      { path: "login", element: <Login /> },
+      { path: "register", element: <Register /> },
+      { path: "forgotPassword", element: <ForgotPassword /> },
+      { path: "verifyCode", element: <VerifyResetCode /> },
     ],
   },
   { path: "*", element: <PageNotFound /> },

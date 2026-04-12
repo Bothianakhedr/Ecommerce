@@ -1,46 +1,49 @@
-import { forgotPasswordServices } from "@feature/Auth/services/authServices";
-import type { TInputForgotPasswordForm } from "@feature/Auth/types/types";
-import { ForgotPasswordSchema } from "@feature/Auth/validation/authValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, ErrorMessage, Input } from "@shared/ui";
-import { useMutation } from "@tanstack/react-query";
 import { useForm, type SubmitHandler } from "react-hook-form";
+import { VerifyResetCodeSchema } from "../validation/authValidation";
+import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import { verifyResetCode } from "../services/authServices";
 import { ThreeCircles } from "react-loader-spinner";
+import type { VerifyResetCodeType } from "../types/types";
 
-export const ForgotPassword = () => {
+export const VerifyResetCode = () => {
   const {
     register,
-    formState: { errors },
     handleSubmit,
-  } = useForm<TInputForgotPasswordForm>({
-    resolver: zodResolver(ForgotPasswordSchema),
+    formState: { errors },
+  } = useForm<VerifyResetCodeType>({
+    resolver: zodResolver(VerifyResetCodeSchema),
   });
 
   const { mutate, isPending } = useMutation({
-    mutationFn: (data: TInputForgotPasswordForm) =>
-      forgotPasswordServices(data),
-    onSuccess: () => toast.success("Reset code sent to your email"),
-    onError: () => toast.error("Email not found."),
+    mutationFn: (data: VerifyResetCodeType) => verifyResetCode(data),
+    onSuccess: () => toast.success("Code verified successfully"),
+    onError: () => toast.error("Verified Code invalid"),
   });
-  const onSubmit: SubmitHandler<TInputForgotPasswordForm> = (data) => {
+
+  const onSubmit: SubmitHandler<VerifyResetCodeType> = (data) => {
+    console.log(data);
     mutate(data);
   };
-
   return (
     <div className="container mx-auto px-3 md:px-0 mt-8 max-w-xl">
       <h2 className="text-pink-500 text-2xl font-semibold">
-        Forgot Password ?
+        Verification Code
       </h2>
       <p className="text-gray-600 my-2 italic">
-        Enter your email and we'll send you a password reset link.{" "}
+        Verification code has been sent to your inbox. Please copy it to the
+        input box below.{" "}
       </p>
-
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <Input placeholder="Email ...." {...register("email")} />
+          <Input
+            placeholder="Verification Code..."
+            {...register("resetCode")}
+          />
         </div>
-        {errors?.email && <ErrorMessage msg={errors.email.message} />}
+        {errors.resetCode && <ErrorMessage msg={errors.resetCode.message} />}
         <Button disabled={isPending} className="mt-2 block">
           {isPending ? (
             <ThreeCircles
@@ -53,9 +56,9 @@ export const ForgotPassword = () => {
               wrapperClass=""
             />
           ) : (
-            "Continue"
+            "Verify Code"
           )}
-        </Button>
+        </Button>{" "}
       </form>
     </div>
   );

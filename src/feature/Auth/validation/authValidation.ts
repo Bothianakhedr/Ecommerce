@@ -37,10 +37,19 @@ export const loginSchema = z.object({
     .min(6, "Password must be at least 6 characters long")
     .trim(),
 });
+
 export const ForgotPasswordSchema = z.object({
   email: z
     .string()
     .nonempty("email is required!")
     .regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
+    .trim(),
+});
+export const VerifyResetCodeSchema = z.object({
+  resetCode: z
+    .string()
+    .nonempty("Enter your reset code")
+    .length(6, "Reset code must be 6 digits")
+
     .trim(),
 });
