@@ -7,8 +7,12 @@ import toast from "react-hot-toast";
 import { verifyResetCode } from "../services/authServices";
 import { ThreeCircles } from "react-loader-spinner";
 import type { VerifyResetCodeType } from "../types/types";
+import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 export const VerifyResetCode = () => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -19,20 +23,24 @@ export const VerifyResetCode = () => {
 
   const { mutate, isPending } = useMutation({
     mutationFn: (data: VerifyResetCodeType) => verifyResetCode(data),
-    onSuccess: () => toast.success("Code verified successfully"),
+    onSuccess: () => {
+      toast.success("Code verified successfully");
+      navigate("/resetPassword");
+    },
     onError: () => toast.error("Verified Code invalid"),
   });
 
   const onSubmit: SubmitHandler<VerifyResetCodeType> = (data) => {
-    console.log(data);
     mutate(data);
   };
   return (
+    <>
+    <Helmet>Verify Code</Helmet>
     <div className="container mx-auto px-3 md:px-0 mt-8 max-w-xl">
       <h2 className="text-pink-500 text-2xl font-semibold">
         Verification Code
       </h2>
-      <p className="text-gray-600 my-2 italic">
+      <p className="text-gray-600 my-2 italic dark:text-white">
         Verification code has been sent to your inbox. Please copy it to the
         input box below.{" "}
       </p>
@@ -61,5 +69,6 @@ export const VerifyResetCode = () => {
         </Button>{" "}
       </form>
     </div>
+    </>
   );
 };

@@ -4,6 +4,7 @@ import { Button, ErrorMessage, Input } from "@shared/ui";
 import type { InputAttributeLogin } from "@feature/Auth/types/types";
 import { useLogin } from "@feature/Auth/hooks/useLogin";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 export const Login = () => {
   const { handleSubmit, isPending, onSubmit, register, errors } = useLogin();
@@ -12,7 +13,7 @@ export const Login = () => {
   const renderLoginInput = loginInput.map(
     ({ label, name, type }: InputAttributeLogin) => (
       <div key={name}>
-        <label className="text-sm text-gray-600" htmlFor="">
+        <label className="text-sm text-gray-600 dark:text-white" >
           {label}
         </label>
         <Input type={type} {...register(name)} />
@@ -26,7 +27,11 @@ export const Login = () => {
     )
   );
   return (
-    <div>
+    <>
+    <Helmet>
+      <title>Login</title>
+    </Helmet>
+    <section>
       <div className="container mx-auto px-4 md:px-0 max-w-3xl mt-11 space-y-3">
         <h2 className="text-pink-500 text-2xl font-semibold">Login Now</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -48,6 +53,7 @@ export const Login = () => {
           </Button>
         </form>
       </div>
-    </div>
+    </section>
+    </>
   );
 };

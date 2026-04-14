@@ -42,7 +42,7 @@ export const Products = () => {
       <div className="container mx-auto flex flex-col md:flex-row gap-8">
         <Aside allProducts={allProducts} />
 
-        <div className="flex-1 my-15">
+        <div className="flex-1 md:my-15">
           {filteredProducts && filteredProducts.length > 0 ? (
             <div className="grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-7">
               {filteredProducts.map((product) => (

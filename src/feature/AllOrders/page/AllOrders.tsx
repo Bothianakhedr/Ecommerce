@@ -24,13 +24,13 @@ export function AllOrders() {
     <Helmet>
       <title>Orders</title>
     </Helmet>
-    <section className="min-h-screen bg-gray-50 py-12">
+    <section className="min-h-screen bg-gray-50 py-12 dark:bg-gray-900">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="flex justify-between items-center mb-10 px-2">
-          <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">
+          <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight dark:text-white">
             Order History
           </h1>
-          <span className="bg-pink-100 text-pink-600 px-4 py-1.5 rounded-full text-sm font-bold">
+          <span className="bg-pink-100 text-pink-600 px-4 py-1.5 rounded-full text-sm font-bold ">
             Orders
           </span>
         </div>
@@ -40,14 +40,14 @@ export function AllOrders() {
         ) : (
           orders?.map((order: OrderResponse) => (
             <div key={order.id} className="space-y-8 ">
-              <div className="bg-white my-5 shadow-sm border rounded-xl p-3 border-gray-100 overflow-hidden hover:shadow-md transition-shadow duration-300">
-                <div className="bg-gray-50/50 p-6 border-b border-gray-100 flex flex-wrap justify-between items-center gap-4">
+              <div className="bg-white my-5 shadow-sm border rounded-xl p-3 border-gray-100 overflow-hidden hover:shadow-md transition-shadow duration-300  dark:bg-gray-800">
+                <div className="bg-gray-50/50  p-6 border-b border-gray-100 flex flex-col  md:flex-row flex-wrap justify-between items-center gap-4 rounded dark:bg-gray-800  ">
                   <div className="flex gap-8">
                     <div>
-                      <p className="text-[10px] text-gray-400 uppercase font-black tracking-widest mb-1">
+                      <p className="text-[10px] text-gray-400 uppercase font-black tracking-widest mb-1  dark:text-white">
                         Order Number
                       </p>
-                      <p className="text-sm font-bold text-gray-600">
+                      <p className="text-sm font-bold text-gray-600  dark:text-white">
                         #{order.id}
                       </p>
                     </div>
@@ -97,11 +97,11 @@ export function AllOrders() {
                           />
                         </div>
                         <div className="flex-1">
-                          <h3 className="font-bold text-gray-800 text-base">
+                          <h3 className="font-bold text-gray-800 text-base  dark:text-white">
                             {product.product.title}
                           </h3>
-                          <p className="text-pink-500 font-semibold text-sm">
-                            {product.product.price} EGP
+                          <p className="text-pink-500 font-semibold text-sm  dark:text-white">
+                            {product.price} EGP
                           </p>
                         </div>
                         <Link

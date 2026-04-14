@@ -11,6 +11,7 @@ import {
   ProductDetails,
   Products,
   Register,
+  ResetPassword,
   VerifyResetCode,
   Wishlist,
 } from "../feature";
@@ -66,6 +67,7 @@ export const router = createBrowserRouter([
       { path: "register", element: <Register /> },
       { path: "forgotPassword", element: <ForgotPassword /> },
       { path: "verifyCode", element: <VerifyResetCode /> },
+      { path: "resetPassword", element: <ResetPassword /> },
     ],
   },
   { path: "*", element: <PageNotFound /> },

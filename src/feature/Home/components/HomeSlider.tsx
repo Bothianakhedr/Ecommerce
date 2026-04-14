@@ -9,7 +9,7 @@ import slider3 from "../../../assets/images/slider-image-3.jpeg";
 
 export const HomeSlider = () => {
   return (
-    <div className="grid grid-cols-12 pt-6">
+    <div className="grid grid-cols-12 pt-6 dark:bg-gray-900">
       <div className="col-span-12 md:col-span-8 px-2 md:px-0">
         <Swiper
           modules={[Autoplay]}

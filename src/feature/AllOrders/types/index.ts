@@ -3,10 +3,10 @@ export type TokenPayload = {
 };
 
 export type OrderCartItems = {
+  price: number;
   product: {
     imageCover: string;
     title: string;
-    price: number;
     _id:string
   };
 

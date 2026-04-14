@@ -44,7 +44,7 @@ console.log([...searchParams]);
   return (
     <aside
       id="default-sidebar"
-      className="rounded-md p-1.5 shadow mt-15  w-64 h-full transition-transform -translate-x-full sm:translate-x-0 dark:bg-gray-800"
+      className="rounded-md hidden md:block p-1.5 shadow mt-15  w-64 h-full transition-transform -translate-x-full sm:translate-x-0 dark:bg-gray-800"
       aria-label="Sidebar"
     >
       <div className="h-full px-3 py-4 overflow-y-auto bg-neutral-primary-soft  border-default">

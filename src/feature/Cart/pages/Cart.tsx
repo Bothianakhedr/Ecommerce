@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
-import { FaCartPlus } from "react-icons/fa";
+import { FaCartPlus, FaTrashAlt } from "react-icons/fa";
 import { cartInfoAtom } from "../atoms/cart-atom";
 import type { CartProduct } from "../types";
-import { FaTrashAlt } from "react-icons/fa";
 import { Button } from "@shared/ui";
 import { handleClearCart } from "../helper";
 import { Helmet } from "react-helmet-async";
@@ -16,93 +15,80 @@ export const Cart = () => {
       <Helmet>
         <title>Cart</title>
       </Helmet>
-      <section className="p-9">
-        <div className="container mx-auto bg-gray-50 rounded-md p-7">
-          <h2 className="text-2xl font-semibold mb-3 text-pink-600 flex items-center gap-2">
+      <section className="p-4 md:p-9 bg-white dark:bg-gray-900 min-h-screen">
+        <div className="container mx-auto bg-gray-50 rounded-xl p-4 md:p-7 dark:bg-gray-800 shadow-sm">
+          <h2 className="text-xl md:text-2xl font-semibold mb-4 text-pink-600 flex items-center gap-2">
             <span>Shop Cart</span>
-            <span>
-              <FaCartPlus />
-            </span>
+            <FaCartPlus />
           </h2>
+
           {products.length > 0 && (
-            <p className="text-pink-600 font-semibold bg-pink-100 w-fit p-2 rounded">
-              Total Price: <span className="text-2xl">{totalCartPrice}</span>{" "}
-              L.E
-            </p>
+            <div className="text-pink-600 font-semibold bg-pink-100 w-full md:w-fit p-3 rounded-lg mb-6 flex justify-between items-center md:block">
+              <span className="text-sm md:text-base">Total Price:</span>
+              <span className="text-xl md:text-2xl ml-2">{totalCartPrice} L.E</span>
+            </div>
           )}
 
           {products.length === 0 ? (
-            <div className="py-16 flex flex-col justify-center items-center">
-              <div className="w-16 mb-4 h-16 rounded-full bg-gray-100 flex items-center justify-center">
-                <FaCartPlus className="text-3xl text-pink-500" />
+            <div className="py-16 flex flex-col justify-center items-center text-center">
+              <div className="w-20 h-20 mb-4 rounded-full bg-gray-100 flex items-center justify-center">
+                <FaCartPlus className="text-4xl text-pink-500" />
               </div>
-              <h3 className="text-lg font-semibold">Your cart is empty!</h3>
-
+              <h3 className="text-lg font-semibold dark:text-white">Your cart is empty!</h3>
               <Link
                 to="/"
-                className="bg-pink-500 hover:bg-pink-400 transition-colors rounded p-2 text-white text-sm mt-2"
+                className="bg-pink-500 hover:bg-pink-600 transition-colors rounded-full px-6 py-2 text-white text-sm mt-4 shadow-md"
               >
-                ADD YOUR FIRST PRODUCT TO CART
+                ADD YOUR FIRST PRODUCT
               </Link>
             </div>
           ) : (
-            <div>
+            <div className="space-y-4">
               {products.map((product: CartProduct) => (
                 <div
                   key={product?.product?.id}
-                  className="flex items-center justify-between border-b border-gray-200 py-4 px-2 hover:bg-gray-50 transition-colors"
+                  className="flex flex-col sm:flex-row items-center justify-between border-b border-gray-200 pb-6 pt-4 px-2 gap-4 hover:bg-white/50 dark:hover:bg-gray-700/50 transition-colors rounded-lg"
                 >
-                  <div className="flex items-center gap-4">
+                  <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto text-center sm:text-left">
                     <img
                       src={product.product.imageCover}
                       alt="product"
-                      className="w-24 h-24 object-contain bg-white border border-pink-300 rounded"
+                      className="w-28 h-28 md:w-24 md:h-24 object-contain bg-white border border-pink-100 rounded-xl shadow-sm"
                     />
 
-                    <div>
-                      <h3 className="font-semibold text-lg text-slate-800">
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-lg text-slate-800 dark:text-white line-clamp-1">
                         {product.product.title}
                       </h3>
-                      <p className="text-pink-600 font-medium">
+                      <p className="text-pink-600 font-bold text-lg mb-2">
                         {product.price} L.E
                       </p>
 
                       <button
-                        className="mt-2 flex items-center cursor-pointer gap-2 text-white bg-red-800 hover:bg-red-700 px-3 py-1 rounded-md text-sm transition-all"
-                        onClick={() => {
-                          deleteCartItem(product?.product?.id);
-                        }}
+                        className="flex items-center bg-red-100 p-1 rounded mx-auto sm:mx-0 cursor-pointer gap-2 text-red-500 hover:text-red-700 font-medium text-sm transition-colors"
+                        onClick={() => deleteCartItem(product?.product?.id)}
                       >
-                        <FaTrashAlt /> REMOVE
+                        <FaTrashAlt  /> REMOVE
                       </button>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-4 bg-white dark:bg-gray-900 p-2 rounded-lg border border-gray-100 dark:border-gray-700">
                     <button
-                      className="w-8 h-8 flex items-center  cursor-pointer justify-center bg-pink-600 text-white rounded-md hover:bg-pink-700 font-bold focus:border-0 focus:outline-0"
-                      onClick={() => {
-                        updateCartProductQuantity(
-                          product?.product?.id,
-                          product.count - 1,
-                        );
-                      }}
+                      className="w-10 h-10 flex items-center cursor-pointer justify-center bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-white rounded-md hover:bg-pink-500 hover:text-white transition-colors font-bold text-xl"
+                      onClick={() => updateCartProductQuantity(product?.product?.id, product.count - 1)}
+                      disabled={product.count <= 1}
                     >
                       -
                     </button>
 
-                    <span className="text-lg font-semibold w-5 text-center">
+                    <span className="text-lg font-bold w-8 text-center dark:text-white">
                       {product.count}
                     </span>
 
                     <button
-                      className="w-8 h-8 flex items-center justify-center cursor-pointer bg-pink-600 text-white rounded-md hover:bg-pink-700 font-bold focus:border-0 focus:outline-0"
-                      onClick={() => {
-                        updateCartProductQuantity(
-                          product?.product?.id,
-                          product.count + 1,
-                        );
-                      }}
+                      className="w-10 h-10 flex items-center cursor-pointer justify-center bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-white rounded-md hover:bg-pink-500 hover:text-white transition-colors font-bold text-xl"
+                      onClick={() => updateCartProductQuantity(product?.product?.id, product.count + 1)}
                     >
                       +
                     </button>
@@ -111,20 +97,27 @@ export const Cart = () => {
               ))}
             </div>
           )}
-          <div className="flex justify-end">
+
+          <div className="flex flex-col sm:flex-row justify-between items-center mt-8 gap-4">
             {products.length > 0 && (
-              <Button onClick={handleClearCart} className="w-fit mt-6">
-                Clear Cart
+              <Button 
+                onClick={handleClearCart} 
+                className="w-full sm:w-fit order-2 sm:order-1 bg-transparent border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+              >
+                Clear All Cart
               </Button>
+            )}
+            
+            {products.length > 0 && (
+              <Link
+                to="/checkout"
+                className="w-full sm:w-fit order-1 sm:order-2 bg-pink-500 hover:bg-pink-600 text-white text-center font-bold px-10 py-3 rounded-xl shadow-lg transition-transform active:scale-95"
+              >
+                Checkout Now
+              </Link>
             )}
           </div>
         </div>
-        <Link
-          to="/checkout"
-          className="block mt-3 ms-auto bg-pink-500 hover:bg-pink-700 text-white transition-colors w-fit px-8 py-2 rounded-md cursor-pointer"
-        >
-          Next step
-        </Link>
       </section>
     </>
   );

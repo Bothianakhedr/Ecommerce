@@ -11,14 +11,12 @@ export const Register = () => {
   const renderRegisterInput = RegisterInput.map(
     ({ label, name, type }: InputAttributeRegister) => (
       <div key={name}>
-        <label className="text-sm text-gray-600" htmlFor="">
-          {label}
-        </label>
-        {type == "password" }
+        <label className="text-sm text-gray-600 dark:text-white">{label}</label>
+        {type == "password"}
         <Input type={type} {...register(name)} />
         {errors?.[name] && <ErrorMessage msg={errors?.[name].message} />}
       </div>
-    )
+    ),
   );
   return (
     <div>

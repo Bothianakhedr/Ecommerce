@@ -45,17 +45,18 @@ export const ProductDetails = () => {
             showNav={false}
             showPlayButton={false}
             items={imageList}
+            
           />
         </div>
         <Helmet>
           <title>{productDetails.title}</title>
         </Helmet>
-        <div className="col-span-8 text-center md:text-left mt-10 md:mt-5  px-5">
+        <div className="col-span-8 text-center md:text-left mt-10 md:mt-5  px-5  dark:text-white">
           <h2 className="font-bold text-2xl">{productDetails.title}</h2>
           <div className="flex items-center gap-2 mt-3 justify-center md:justify-start">
             <FaStar className="text-yellow-400" />
             <span>{productDetails.ratingsAverage} / 5</span>
-            <span className="text-gray-500">
+            <span className="text-gray-500  dark:text-white">
               ({productDetails.ratingsQuantity} reviews)
             </span>
           </div>
@@ -68,7 +69,7 @@ export const ProductDetails = () => {
           ) : (
             <span className="text-red-600 text-sm">Out of stock</span>
           )}
-          <p className=" mt-3 whitespace-pre-line text-gray-600 ">
+          <p className=" mt-3 whitespace-pre-line text-gray-600  dark:text-white ">
             {productDetails.description}
           </p>
           <h3 className="font-semibold mt-2">
@@ -80,7 +81,7 @@ export const ProductDetails = () => {
           {productDetails.subcategory.map((sub: TProductDetailsSubCategory) => (
             <span
               key={sub._id}
-              className="bg-gray-100 rounded-md inline-block px-2 py-1 text-sm mt-2"
+              className="bg-gray-100 rounded-md inline-block px-2 py-1 text-sm mt-2 dark:text-black "
             >
               {sub.name}
             </span>
@@ -92,7 +93,7 @@ export const ProductDetails = () => {
               alt={productDetails.brand.name}
               className="w-10 h-10 object-contain"
             />
-            <span className="font-semibold">{productDetails.brand.name}</span>
+            <span className="font-semibold ">{productDetails.brand.name}</span>
           </div>
 
           <Button

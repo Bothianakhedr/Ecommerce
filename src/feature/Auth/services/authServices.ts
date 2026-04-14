@@ -3,6 +3,7 @@ import type {
   TInputForgotPasswordForm,
   TInputLoginForm,
   TInputRegisterForm,
+  TInputResetPasswordForm,
   VerifyResetCodeType,
 } from "../types/types";
 
@@ -32,6 +33,9 @@ export const forgotPasswordServices = async (
   );
 
   return responseData;
+};
+export const resetPasswordServices = async (data: TInputResetPasswordForm) => {
+  return await axiosInstance.put("api/v1/auth/resetPassword", data);
 };
 
 export const verifyResetCode = async (data: VerifyResetCodeType) => {

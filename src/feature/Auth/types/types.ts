@@ -23,6 +23,10 @@ export type TInputLoginForm = {
 export type TInputForgotPasswordForm = {
   email: string;
 };
+export type TInputResetPasswordForm = {
+  email: string;
+  newPassword:string
+};
 
  export type VerifyResetCodeType = {
   resetCode: string;

@@ -45,6 +45,17 @@ export const ForgotPasswordSchema = z.object({
     .regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
     .trim(),
 });
+export const ResetPasswordSchema = z.object({
+  email: z
+    .string()
+    .nonempty("email is required!")
+    .regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
+    .trim(),
+  newPassword: z
+    .string()
+    .nonempty("newPassword is required!")
+    .trim(),
+});
 export const VerifyResetCodeSchema = z.object({
   resetCode: z
     .string()

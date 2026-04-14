@@ -4,11 +4,14 @@ import { ForgotPasswordSchema } from "@feature/Auth/validation/authValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, ErrorMessage, Input } from "@shared/ui";
 import { useMutation } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import toast from "react-hot-toast";
 import { ThreeCircles } from "react-loader-spinner";
+import { useNavigate } from "react-router-dom";
 
 export const ForgotPassword = () => {
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
@@ -25,14 +28,19 @@ export const ForgotPassword = () => {
   });
   const onSubmit: SubmitHandler<TInputForgotPasswordForm> = (data) => {
     mutate(data);
+    setTimeout(() => {
+      navigate("/verifyCode");
+    }, 2000);
   };
 
   return (
+  <>
+  <Helmet><title>Forgot password</title></Helmet>
     <div className="container mx-auto px-3 md:px-0 mt-8 max-w-xl">
-      <h2 className="text-pink-500 text-2xl font-semibold">
+      <h2 className="text-pink-500 text-2xl font-semibold dark:text-white">
         Forgot Password ?
       </h2>
-      <p className="text-gray-600 my-2 italic">
+      <p className="text-gray-600 my-2 italic dark:text-white">
         Enter your email and we'll send you a password reset link.{" "}
       </p>
 
@@ -58,5 +66,6 @@ export const ForgotPassword = () => {
         </Button>
       </form>
     </div>
+  </>
   );
 };

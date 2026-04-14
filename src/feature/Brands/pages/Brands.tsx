@@ -22,12 +22,12 @@ export const Brands = () => {
         <title>Brands</title>
       </Helmet>
 
-      <div className="container mx-auto mt-10 md:grid gap-7  lg:grid-cols-2 xl:grid-cols-3">
+      <div className="container  mx-auto mt-10 md:grid gap-7  lg:grid-cols-2 xl:grid-cols-3">
         {allBrands?.map((brand: BrandType) => (
           <Link
             to={`/products?brand=${brand._id}`}
             key={brand._id}
-            className="shadow-md text-center rounded-md "
+            className="shadow-md text-center rounded-md mb-5 block "
           >
             <img
               className="h-56 w-full object-cover rounded-md"
